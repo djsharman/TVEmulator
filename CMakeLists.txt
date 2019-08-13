@@ -7,7 +7,7 @@ project(MyProject)
 
 # add_executable creates an executable with
 # The given name.
-add_executable(MyEXE main.cpp tvParams.cpp)
+add_executable(MyEXE main.cpp tvParams.cpp ledValueSelect.cpp)
 
 # Make sure the executable links to the wiringPi lib
 target_link_libraries(MyEXE wiringPi wiringPiDev)

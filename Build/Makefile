@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/darren/cpp
+CMAKE_SOURCE_DIR = /home/darren/TVEmulator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/darren/cpp/Build
+CMAKE_BINARY_DIR = /home/darren/TVEmulator/Build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/darren/cpp/Build/CMakeFiles /home/darren/cpp/Build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/darren/TVEmulator/Build/CMakeFiles /home/darren/TVEmulator/Build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/darren/cpp/Build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/darren/TVEmulator/Build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,6 +122,33 @@ MyEXE: cmake_check_build_system
 MyEXE/fast:
 	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/build
 .PHONY : MyEXE/fast
+
+ledValueSelect.o: ledValueSelect.cpp.o
+
+.PHONY : ledValueSelect.o
+
+# target to build an object file
+ledValueSelect.cpp.o:
+	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/ledValueSelect.cpp.o
+.PHONY : ledValueSelect.cpp.o
+
+ledValueSelect.i: ledValueSelect.cpp.i
+
+.PHONY : ledValueSelect.i
+
+# target to preprocess a source file
+ledValueSelect.cpp.i:
+	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/ledValueSelect.cpp.i
+.PHONY : ledValueSelect.cpp.i
+
+ledValueSelect.s: ledValueSelect.cpp.s
+
+.PHONY : ledValueSelect.s
+
+# target to generate assembly for a file
+ledValueSelect.cpp.s:
+	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/ledValueSelect.cpp.s
+.PHONY : ledValueSelect.cpp.s
 
 main.o: main.cpp.o
 
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... MyEXE"
+	@echo "... ledValueSelect.o"
+	@echo "... ledValueSelect.i"
+	@echo "... ledValueSelect.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
