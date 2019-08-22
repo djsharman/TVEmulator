@@ -4,6 +4,7 @@
 //#include <iostream>
 
 #include "ledValueSelect.h"
+#include "sceneRunner.h"
 
 
 #define PIFACE 200
@@ -21,15 +22,15 @@ int main(int argc, char** argv)
     piFaceSetup(PIFACE);
 
     ledValueSelect valueSelect;
-
-    valueSelect.selectNextValue();
-
+    sceneRunner runner;
 
 
+    for(;;) {
+        valueSelect.selectNextValue();
+        runner.runCurrentScene(valueSelect);
+    }
 
-    printf( "NR: %X\n", valueSelect.nr);
-    printf( "NG: %X\n", valueSelect.ng);
-    printf("=========================\n");
+
 
     return 0;
 }

@@ -1,3 +1,9 @@
+
+
+/**
+ * Selects and stores RGB values for scene colors
+ */
+
 #include <stdio.h>
 //#include <iostream>
 #include "ledValueSelect.h"
@@ -6,6 +12,7 @@
 #include <random>
 
 using namespace std;
+
 
 ledValueSelect::ledValueSelect() {
 
@@ -34,6 +41,10 @@ int ledValueSelect::randomNum(int min_num, int max_num) {
 
 
 void ledValueSelect::selectNextValue() {
+    // save Prev RGB values
+    pr = nr; 
+    pg = ng;
+    pb = nb;
 
 
     // Read next 16-bit (5/6/5) color
@@ -52,14 +63,17 @@ void ledValueSelect::selectNextValue() {
     ng = (uint8_t)tvParams::getGamma(g8) * 257;
     nb = (uint8_t)tvParams::getGamma(b8) * 257;
 
-    totalTime = randomNum(250, 2500);    // Semi-random pixel-to-pixel time
-    fadeTime  = randomNum(0, totalTime); // Pixel-to-pixel transition time
-    if(randomNum(0, 10) < 3) fadeTime = 0;  // Force scene cut 30% of time
-    holdTime  = totalTime - fadeTime; // Non-transition time
-
     pixelNum += 2;
     if(pixelNum >= colourSize) {
         pixelNum = 0;
     }
+
+    /* 
+
+    printf( "NR: %X\n", nr);
+    printf( "NG: %X\n", ng);
+    printf( "NB: %X\n", nb);
+    printf("=========================\n");
+    */
 
 }

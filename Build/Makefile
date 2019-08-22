@@ -177,6 +177,60 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+pwmOutput.o: pwmOutput.cpp.o
+
+.PHONY : pwmOutput.o
+
+# target to build an object file
+pwmOutput.cpp.o:
+	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/pwmOutput.cpp.o
+.PHONY : pwmOutput.cpp.o
+
+pwmOutput.i: pwmOutput.cpp.i
+
+.PHONY : pwmOutput.i
+
+# target to preprocess a source file
+pwmOutput.cpp.i:
+	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/pwmOutput.cpp.i
+.PHONY : pwmOutput.cpp.i
+
+pwmOutput.s: pwmOutput.cpp.s
+
+.PHONY : pwmOutput.s
+
+# target to generate assembly for a file
+pwmOutput.cpp.s:
+	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/pwmOutput.cpp.s
+.PHONY : pwmOutput.cpp.s
+
+sceneRunner.o: sceneRunner.cpp.o
+
+.PHONY : sceneRunner.o
+
+# target to build an object file
+sceneRunner.cpp.o:
+	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/sceneRunner.cpp.o
+.PHONY : sceneRunner.cpp.o
+
+sceneRunner.i: sceneRunner.cpp.i
+
+.PHONY : sceneRunner.i
+
+# target to preprocess a source file
+sceneRunner.cpp.i:
+	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/sceneRunner.cpp.i
+.PHONY : sceneRunner.cpp.i
+
+sceneRunner.s: sceneRunner.cpp.s
+
+.PHONY : sceneRunner.s
+
+# target to generate assembly for a file
+sceneRunner.cpp.s:
+	$(MAKE) -f CMakeFiles/MyEXE.dir/build.make CMakeFiles/MyEXE.dir/sceneRunner.cpp.s
+.PHONY : sceneRunner.cpp.s
+
 tvParams.o: tvParams.cpp.o
 
 .PHONY : tvParams.o
@@ -219,6 +273,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... pwmOutput.o"
+	@echo "... pwmOutput.i"
+	@echo "... pwmOutput.s"
+	@echo "... sceneRunner.o"
+	@echo "... sceneRunner.i"
+	@echo "... sceneRunner.s"
 	@echo "... tvParams.o"
 	@echo "... tvParams.i"
 	@echo "... tvParams.s"
