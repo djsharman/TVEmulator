@@ -13,6 +13,7 @@
 #define LED_R (PIFACE + 2)
 #define LED_G (PIFACE + 3)
 #define LED_B (PIFACE + 4)
+#define LED_W (PIFACE + 5)
 
 
 
@@ -46,8 +47,15 @@ void sceneRunner::runCurrentScene(ledValueSelect valueSelect) {
   fadeTime  = randomNum(0, totalTime); // Pixel-to-pixel transition time
   
   if(randomNum(0, 10) < 3) fadeTime = 0;  // Force scene cut 30% of time
-  
-  holdTime  = totalTime - fadeTime; // Non-transition time
+
+  // force blackout
+  if(randomNum(0, 100) < 2) {
+    fadeTime = 0;
+    totalTime = 600;
+    r = g = b = 0;
+    valueSelect.nr = valueSelect.ng = valueSelect.nb = 0;
+
+  }
 
   auto startTime = getTime();
 
@@ -56,8 +64,10 @@ void sceneRunner::runCurrentScene(ledValueSelect valueSelect) {
     auto curTime = getTime();
 
     // get elapsed time in microseconds
-    elapsed = (uint32_t)chrono::duration_cast<chrono::microseconds>(curTime - startTime).count();
-    if(elapsed >= fadeTime) elapsed = fadeTime;
+    elapsed = (uint32_t)chrono::duration_cast<chrono::milliseconds>(curTime - startTime).count();
+    if(elapsed >= fadeTime) { 
+      elapsed = fadeTime;
+    } 
     
     // apply fading
     if(fadeTime) {
@@ -80,11 +90,13 @@ void sceneRunner::runCurrentScene(ledValueSelect valueSelect) {
     auto curTime = getTime();
 
     // get elapsed time in microseconds
-    elapsed = (uint32_t)chrono::duration_cast<chrono::microseconds>(curTime - startTime).count();
+    elapsed = (uint32_t)chrono::duration_cast<chrono::milliseconds>(curTime - startTime).count();
 
     sendValuesWithThreads(valueSelect.nr, valueSelect.ng, valueSelect.nb);
 
-    if(elapsed >= totalTime) break;
+    if(elapsed >= totalTime) {
+        break;
+    } 
   }
 
 }
@@ -94,9 +106,14 @@ void sceneRunner::sendValuesWithThreads(uint16_t r, uint16_t g, uint16_t b) {
     thread t2(sendToPWN, g, LED_G);
     thread t3(sendToPWN, b, LED_B);
 
+    // add an extra LED with an average intensity
+    uint32_t average = (r+g+b) / 3;
+    thread t4(sendToPWN, (uint16_t)average, LED_W);
+
     t1.join();
     t2.join();
     t3.join();
+    t4.join();
 }
 
 
@@ -105,6 +122,9 @@ void sceneRunner::sendToPWN(uint16_t targetIntensity, int piFacePin) {
     pwmOutput pwm;
 
     uint16_t finalIntensity = getFinalIntensity(targetIntensity);
+
+
+    //printf("pin %i  intensity %i ", piFacePin, targetIntensity);
     pwm.outputCurrentTimeSlice(finalIntensity, piFacePin);
 }
 

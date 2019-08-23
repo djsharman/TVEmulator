@@ -15,11 +15,6 @@ using namespace std;
 
 
 ledValueSelect::ledValueSelect() {
-
-    printf("In LED Value select constructor\n");
-    printf("=========================\n");
-
-
     
     gammaSize = tvParams::getGammaSize();
     colourSize = tvParams::getColorSize();

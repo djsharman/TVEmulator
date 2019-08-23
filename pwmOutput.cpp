@@ -7,9 +7,11 @@
 
 void pwmOutput::outputCurrentTimeSlice(int i, int piFacePin) {
 
-    digitalWrite(piFacePin, HIGH); // On
-    delayMicroseconds(i * 10);
-    digitalWrite(piFacePin, LOW); // Off
+    if(i >= 10) {
+        digitalWrite(piFacePin, HIGH); // On
+        delayMicroseconds(i * 10);
+        digitalWrite(piFacePin, LOW); // Off
+    }
     delayMicroseconds((500 - i) * 10);
 
 }
